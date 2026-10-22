@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Nimbus · Weather</title>
+  <meta name="description" content="A fast, clean weather app. Search any city or use your location for current conditions, a 24-hour strip and a 7-day forecast.">
+  <meta name="theme-color" content="#0E1B2C">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='13' cy='13' r='7' fill='%23FFB547'/%3E%3Cpath d='M9 26h15a5 5 0 0 0 0-10 7 7 0 0 0-13.4 2A4 4 0 0 0 9 26z' fill='%23E9EEF5'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="brand"><span class="logo" aria-hidden="true"></span>Nimbus</div>
+    <form class="search" id="searchForm" role="search" autocomplete="off">
+      <label class="sr" for="q">Search a city</label>
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="Search a city" aria-autocomplete="list" aria-controls="suggest" aria-expanded="false">
+      <ul id="suggest" class="suggest" role="listbox" hidden></ul>
+    </form>
+    <div class="actions">
+      <button class="chip" id="locate" type="button" title="Use my location">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><span>My location</span>
+      </button>
+      <div class="units" role="group" aria-label="Units">
+        <button type="button" data-unit="c" aria-pressed="true">°C</button>
+        <button type="button" data-unit="f" aria-pressed="false">°F</button>
+      </div>
+    </div>
+  </header>
+
+  <main id="main">
+    <p class="status" id="status" role="status" aria-live="polite"></p>
+
+    <section class="now card" id="now" aria-labelledby="place">
+      <div class="now-top">
+        <div>
+          <h1 id="place" class="place">Loading…</h1>
+          <p class="meta" id="localTime"></p>
+        </div>
+        <div class="icon-lg" id="nowIcon" aria-hidden="true"></div>
+      </div>
+      <div class="temp-row">
+        <span class="temp" id="nowTemp">--</span>
+        <div class="desc">
+          <strong id="nowDesc">—</strong>
+          <span id="nowHiLo"></span>
+        </div>
+      </div>
+      <dl class="stats">
+        <div><dt>Feels like</dt><dd id="feels">--</dd></div>
+        <div><dt>Humidity</dt><dd id="hum">--</dd></div>
+        <div><dt>Wind</dt><dd id="wind">--</dd></div>
+        <div><dt>UV index</dt><dd id="uv">--</dd></div>
+      </dl>
+    </section>
+
+    <section class="card" aria-labelledby="hourlyH">
+      <h2 id="hourlyH">Next 24 hours</h2>
+      <div class="hourly" id="hourly" tabindex="0" aria-label="Hourly forecast, scroll sideways"></div>
+    </section>
+
+    <section class="card" aria-labelledby="dailyH">
+      <h2 id="dailyH">7-day forecast</h2>
+      <ol class="daily" id="daily"></ol>
+    </section>
+
+    <section class="recent" aria-labelledby="recentH">
+      <h2 id="recentH" class="sr">Recent searches</h2>
+      <div id="recent" class="recent-list"></div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    Data from <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> · Built by <a href="https://github.com/cryoviper" target="_blank" rel="noopener">Praveen Sinwar</a>
+  </footer>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
